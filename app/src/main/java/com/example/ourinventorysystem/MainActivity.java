@@ -33,19 +33,21 @@ public class MainActivity extends AppCompatActivity {
         btnsignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String email=emailId.getText().toString();
-                String pwd = password.getText().toString();
-                if(email.isEmpty()){
-                    emailId.setError("plz check email id");
-                    emailId.requestFocus();
-                }
+                    String email=emailId.getText().toString();
+                    String pwd = password.getText().toString();
+
+                  if(email.isEmpty()){
+                        emailId.setError("plz check email id");
+                        emailId.requestFocus();
+                    }
                 else if(pwd.isEmpty()){
                     password.setError("plz enter your password");
                     password.requestFocus();
                 }
                 else if(email.isEmpty() && pwd.isEmpty()){
-                    Toast.makeText(MainActivity.this,"Fields are Empty!",Toast.LENGTH_SHORT);
+                    Toast.makeText(MainActivity.this,"Fields are Empty!",Toast.LENGTH_SHORT).show();
                 }
+
                 else if(!(email.isEmpty() && pwd.isEmpty())){
                     mFirebaseAuth.createUserWithEmailAndPassword(email, pwd).addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
                         @Override

@@ -57,6 +57,7 @@
         android:layout_marginTop="15dp"
         android:layout_gravity="center"
         android:text="forgot password?"
+        android:onClick="forgpas"
         android:id="@+id/pass"
         />
     <TextView

@@ -32,6 +32,7 @@ private FirebaseAuth.AuthStateListener mAuthStateListener;
         emailId = findViewById(R.id.editTextTextEmailAddress);
         password = findViewById(R.id.editTextTextPassword);
         tvSignUp = findViewById(R.id.txtView);
+        forgotPass = findViewById(R.id.pass);
         btnsignIn = findViewById(R.id.button);
 
         mAuthStateListener= new FirebaseAuth.AuthStateListener() {
@@ -39,7 +40,7 @@ private FirebaseAuth.AuthStateListener mAuthStateListener;
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser mFirebaseUser= mFirebaseAuth.getCurrentUser();
                 if(mFirebaseUser != null){
-                    Toast.makeText(loginActivity.this,"you are logged in",Toast.LENGTH_SHORT);
+                    Toast.makeText(loginActivity.this,"you are logged in",Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(loginActivity.this,homeActivity.class);
                     startActivity(i);
                 }
@@ -62,14 +63,14 @@ private FirebaseAuth.AuthStateListener mAuthStateListener;
                 password.requestFocus();
             }
             else if(email.isEmpty() && pwd.isEmpty()){
-                Toast.makeText(loginActivity.this,"Fields are Empty!",Toast.LENGTH_SHORT);
+                Toast.makeText(loginActivity.this,"Fields are Empty!",Toast.LENGTH_SHORT).show();
             }
             else if(!(email.isEmpty() && pwd.isEmpty())){
                 mFirebaseAuth.signInWithEmailAndPassword(email, pwd).addOnCompleteListener(loginActivity.this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(!task.isSuccessful()){
-                            Toast.makeText(loginActivity.this,"login Error",Toast.LENGTH_SHORT);
+                            Toast.makeText(loginActivity.this,"login Error",Toast.LENGTH_SHORT).show();
                         }
                         else {
                             Intent intToHome = new Intent(loginActivity.this,homeActivity.class);
@@ -79,7 +80,7 @@ private FirebaseAuth.AuthStateListener mAuthStateListener;
                 });
             }
             else if(password.length()<6){
-                Toast.makeText(loginActivity.this,"password worng",Toast.LENGTH_SHORT);
+                Toast.makeText(loginActivity.this,"password worng",Toast.LENGTH_SHORT).show();
             }
             else {
                 Toast.makeText(loginActivity.this,"Error occurred!",Toast.LENGTH_SHORT);
@@ -93,6 +94,12 @@ private FirebaseAuth.AuthStateListener mAuthStateListener;
                 startActivity(intSignUp);
             }
         });
+
+
+    }
+
+    public void  forgpas(View v){
+        startActivity(new Intent(this,forgotPassword.class));
     }
     protected void onStart(){
         super.onStart();
