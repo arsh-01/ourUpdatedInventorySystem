@@ -39,8 +39,6 @@ public class imageAdapter extends RecyclerView.Adapter<imageAdapter.ImageViewHol
         holder.textViewName.setText(uploadCurrent.getmName());
         Picasso.with(pcontext).load(uploadCurrent.getmImageUrl()).placeholder(R.mipmap.ic_launcher).fit().centerCrop().into(holder.imageView);
 
-        //this just to check url are correct.
-        System.out.println(uploadCurrent.getmImageUrl());
 
     }
 
@@ -62,3 +60,4 @@ public class imageAdapter extends RecyclerView.Adapter<imageAdapter.ImageViewHol
     }
 
 }
+

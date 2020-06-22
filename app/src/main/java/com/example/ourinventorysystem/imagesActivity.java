@@ -42,8 +42,8 @@ public class imagesActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()){
-                    upload picupload = postSnapshot.getValue(upload.class);
-                    puploads.add(picupload);
+                    upload picUpload = postSnapshot.getValue(upload.class);
+                    puploads.add(picUpload);
                 }
 
 
