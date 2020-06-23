@@ -99,7 +99,7 @@ private FirebaseAuth.AuthStateListener mAuthStateListener;
     }
 
     public void  forgpas(View v){
-        startActivity(new Intent(this,forgotPassword.class));
+        startActivity(new Intent(this,forgotPass.class));
     }
     protected void onStart(){
         super.onStart();

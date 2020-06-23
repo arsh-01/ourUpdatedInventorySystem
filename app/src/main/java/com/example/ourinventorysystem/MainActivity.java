@@ -15,12 +15,16 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity {
-    EditText emailId, password;
+    EditText emailId, password, fname,lname;
     Button btnsignUp;
     TextView tvSignIn;
     FirebaseAuth mFirebaseAuth;
+    DatabaseReference ref;
+    Member member;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
        mFirebaseAuth =FirebaseAuth.getInstance();
         emailId = findViewById(R.id.editTextTextEmailAddress);
         password = findViewById(R.id.editTextTextPassword);
+        lname=findViewById(R.id.lname);
+        fname=findViewById(R.id.fname);
         tvSignIn = findViewById(R.id.txtView);
         btnsignUp = findViewById(R.id.button);
         btnsignUp.setOnClickListener(new View.OnClickListener() {
@@ -35,7 +41,11 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                     String email=emailId.getText().toString();
                     String pwd = password.getText().toString();
+                final String firstName=fname.getText().toString();
+                final String lastName = lname.getText().toString();
+                member =new Member();
 
+                ref = FirebaseDatabase.getInstance().getReference().child("Member");
                   if(email.isEmpty()){
                         emailId.setError("plz check email id");
                         emailId.requestFocus();
@@ -56,6 +66,9 @@ public class MainActivity extends AppCompatActivity {
                                 Toast.makeText(MainActivity.this,"signUp Unsuccessful, please Try Again",Toast.LENGTH_SHORT);
                             }
                             else {
+                                member.setFirstName(firstName.toString().trim());
+                                member.setLastName(lastName.toString().trim());
+                                ref.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(member);
                                 startActivity(new Intent(MainActivity.this,homeActivity.class));
                             }
                         }

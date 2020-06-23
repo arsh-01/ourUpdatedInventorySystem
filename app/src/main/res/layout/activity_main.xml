@@ -22,13 +22,31 @@
 
 
 
+<EditText
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:id="@+id/fname"
+    android:ems="10"
+    android:layout_marginTop="30dp"
+    android:hint="enter your first name"
+    />
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:id="@+id/lname"
+        android:ems="10"
+        android:layout_marginTop="20dp"
+        android:hint="enter your last name"
+        />
 
     <EditText
         android:id="@+id/editTextTextEmailAddress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="20dp"
         android:ems="10"
         android:hint="enter your email"
         android:inputType="textEmailAddress"
