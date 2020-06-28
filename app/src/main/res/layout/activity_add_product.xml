@@ -23,6 +23,12 @@
             android:layout_height="wrap_content"
             android:textColor="@color/colorPrimary"
             android:hint="enter File name"/></LinearLayout>
+    <EditText
+        android:id="@+id/fileDescrip"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:hint="enter File Description"/>
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="350dp"

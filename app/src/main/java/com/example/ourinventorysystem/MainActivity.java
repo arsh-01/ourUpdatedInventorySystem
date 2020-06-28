@@ -19,7 +19,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity {
-    EditText emailId, password, fname,lname;
+    EditText emailId, password,checkPass, fname,lname;
     Button btnsignUp;
     TextView tvSignIn;
     FirebaseAuth mFirebaseAuth;
@@ -30,10 +30,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
        mFirebaseAuth =FirebaseAuth.getInstance();
-        emailId = findViewById(R.id.editTextTextEmailAddress);
-        password = findViewById(R.id.editTextTextPassword);
         lname=findViewById(R.id.lname);
         fname=findViewById(R.id.fname);
+        emailId = findViewById(R.id.editTextTextEmailAddress);
+        password = findViewById(R.id.editTextTextPassword);
+        checkPass = findViewById(R.id.editTextPassword);
+
         tvSignIn = findViewById(R.id.txtView);
         btnsignUp = findViewById(R.id.button);
         btnsignUp.setOnClickListener(new View.OnClickListener() {
@@ -41,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                     String email=emailId.getText().toString();
                     String pwd = password.getText().toString();
+                    String pwd2 = checkPass.getText().toString();
                 final String firstName=fname.getText().toString();
                 final String lastName = lname.getText().toString();
                 member =new Member();
@@ -57,13 +60,16 @@ public class MainActivity extends AppCompatActivity {
                 else if(email.isEmpty() && pwd.isEmpty()){
                     Toast.makeText(MainActivity.this,"Fields are Empty!",Toast.LENGTH_SHORT).show();
                 }
+                else if(!(pwd.equals(pwd2))){
+                    checkPass.setError("plz enter same pass");
+                  }
 
-                else if(!(email.isEmpty() && pwd.isEmpty())){
+                else if(!(email.isEmpty() && pwd.isEmpty()&&pwd.equals(pwd2))){
                     mFirebaseAuth.createUserWithEmailAndPassword(email, pwd).addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if(!task.isSuccessful()){
-                                Toast.makeText(MainActivity.this,"signUp Unsuccessful, please Try Again",Toast.LENGTH_SHORT);
+                                Toast.makeText(MainActivity.this,"signUp Unsuccessful, please Try Again",Toast.LENGTH_SHORT).show();
                             }
                             else {
                                 member.setFirstName(firstName.toString().trim());

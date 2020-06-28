@@ -8,19 +8,14 @@
     tools:context=".MainActivity">
 
     <ImageView
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:id="@+id/imageView2"
-        android:layout_marginLeft="120dp"
-        android:layout_width="180dp"
-        android:layout_height="149dp"
+        android:layout_width="150dp"
+        android:layout_gravity="center"
+        android:layout_height="120dp"
         app:srcCompat="@mipmap/logo"
         tools:layout_editor_absoluteX="115dp"
         tools:layout_editor_absoluteY="33dp" />
-
-
-
-
-
 
 <EditText
     android:layout_width="wrap_content"
@@ -28,7 +23,7 @@
     android:layout_gravity="center"
     android:id="@+id/fname"
     android:ems="10"
-    android:layout_marginTop="30dp"
+    android:layout_marginTop="20dp"
     android:hint="enter your first name"
     />
     <EditText
@@ -60,6 +55,16 @@
         android:layout_marginTop="20dp"
         android:layout_gravity="center"
         android:hint="enter your password"
+        android:inputType="textPassword"
+        />
+    <EditText
+        android:id="@+id/editTextPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center"
+        android:hint="enter your password again"
         android:inputType="textPassword"
         />
     <Button

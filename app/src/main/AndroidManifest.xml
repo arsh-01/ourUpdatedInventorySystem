@@ -11,7 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".forgotPass"></activity>
+        <activity android:name=".editable"></activity>
+        <activity android:name=".studentImgActivity" />
+        <activity android:name=".forgotPass" />
         <activity android:name=".MainActivity" />
         <activity android:name=".imagesActivity" />
         <activity android:name=".addProduct" />

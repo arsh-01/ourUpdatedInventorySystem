@@ -16,7 +16,6 @@ import java.util.UUID;
 public class homeActivity extends AppCompatActivity {
     Button btnLogout;
     Button admbtn;
-    int h=1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,11 +48,11 @@ public class homeActivity extends AppCompatActivity {
     }
 
     public void onClick1(View v) {
-        Intent ii = new Intent(this, imagesActivity.class);
+        Intent ii = new Intent(this, studentImgActivity.class);
         startActivity(ii);
     }
     public void onClick2(View v) {
-        Intent iii = new Intent(this, imagesActivity.class);
+        Intent iii = new Intent(this, forgotPass.class);
         startActivity(iii);
     }
 }

@@ -28,12 +28,15 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
+import java.util.HashMap;
+
 public class addProduct extends AppCompatActivity {
 private static final int pickImgRqst=1;
 private Button btnChooseImg;
 private Button btnUpload;
 private TextView TxtViewShowUploads;
 private EditText EditTxtname;
+    private EditText EditDescription;
 private ImageView imageView;
 private ProgressBar progressBar;
 private Uri Imguri;
@@ -50,6 +53,7 @@ private StorageReference storageReference;
         btnUpload = findViewById(R.id.btnUpload);
         TxtViewShowUploads =findViewById(R.id.txtView);
         EditTxtname = findViewById(R.id.filename);
+        EditDescription = findViewById(R.id.fileDescrip);
         imageView=findViewById(R.id.img);
         progressBar = findViewById(R.id.bar);
 
@@ -101,6 +105,7 @@ private StorageReference storageReference;
     private void uploadFile(){
         if (Imguri != null){
             StorageReference fileRef = storageReference.child(System.currentTimeMillis()+"."+getFileExtension(Imguri));
+
             fileRef.putFile(Imguri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
@@ -113,10 +118,11 @@ private StorageReference storageReference;
                         }
                     },500);
                     Toast.makeText(addProduct.this,"Upload successful",Toast.LENGTH_LONG).show();
-                    upload Up = new upload(EditTxtname.getText().toString().trim(),taskSnapshot.getUploadSessionUri().toString());
-
+                    upload Up = new upload(EditTxtname.getText().toString().trim(),EditDescription.getText().toString().trim(),taskSnapshot.getDownloadUrl().toString());
                     String uplodId = databaseRef.push().getKey();
+
                     databaseRef.child(uplodId).setValue(Up);
+
                 }
             })
                     .addOnFailureListener(new OnFailureListener() {
